@@ -10,7 +10,7 @@ def migrate_client_data_into_client_object(apps, schema_editor):
     Project = apps.get_model("entries", "Project")
     Client = apps.get_model("entries", "Client")
     for project in Project.objects.all():
-        client_object, create = Client.get_or_create(name=project.name)
+        client_object, create = Client.get_or_create(name=project.client)
         project.client = client_object
         project.save()
 
