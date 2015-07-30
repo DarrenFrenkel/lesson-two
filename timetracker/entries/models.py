@@ -3,9 +3,16 @@ from django.db import models
 from django.utils import timezone
 
 
-class Project(models.Model):
-    client = models.CharField(max_length=200)
+class Client(models.Model):
     name = models.CharField(max_length=200)
+
+    def __str__(self):
+        return '<{}>'.format(self.name)
+
+
+class Project(models.Model):
+    name = models.CharField(max_length=200)
+    client = models.ForeignKey('Client')
 
     def __str__(self):
         return '<{}> {}'.format(self.client, self.name)
